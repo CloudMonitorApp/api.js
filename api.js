@@ -20,7 +20,7 @@ export default class API {
      * @param {object} params 
      * @param {object} meta 
      */
-    constructor(route, init = null, params = {}, meta = {}) {
+    constructor(route, init = null, params = {}, meta = {}, autoload = true) {
         this._route = route
         this._params = params
         this._meta = meta
@@ -42,6 +42,10 @@ export default class API {
         if (init) {
             this.data(init.data)
             this.meta(init.meta)
+        }
+
+        if (autoload && route) {
+            this.get()
         }
     }
 
